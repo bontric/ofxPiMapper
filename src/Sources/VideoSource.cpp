@@ -51,12 +51,21 @@ void VideoSource::clear(){
 }
 
 void VideoSource::togglePause(){
-    #ifdef TARGET_RASPBERRY_PI
-        _omxPlayer->togglePause();
-    #else
-        _videoPlayer->setPaused(!_videoPlayer->isPaused());
-    #endif
+		#ifdef TARGET_RASPBERRY_PI
+				_omxPlayer->togglePause();
+		#else
+				_videoPlayer->setPaused(!_videoPlayer->isPaused());
+		#endif
 }
+
+void VideoSource::resetPlayback(){
+		#ifdef TARGET_RASPBERRY_PI
+				_omxPlayer->restartMovie();
+		#else
+				_videoPlayer->firstFrame();
+		#endif
+}
+
 
 #ifndef TARGET_RASPBERRY_PI
 	void VideoSource::update(ofEventArgs & args){

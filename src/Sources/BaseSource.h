@@ -19,19 +19,20 @@ class BaseSource {
 		SourceType getType();
 		std::string & getPath();
 		virtual void clear(){}
-        virtual void togglePause(){}
-        bool isActive();
-        bool runsInBackground();
-        void setActive(bool);
+				virtual void togglePause(){}
+	virtual void resetPlayback(){}
+				bool isActive();
+				bool runsInBackground();
+				void setActive(bool);
 
-        virtual void reset(){} // called by surfaceManager to optionally allow users to reset a source's variables
+				virtual void reset(){} // called by surfaceManager to optionally allow users to reset a source's variables
 
 		// TODO: add virtual increaseReferenceCount and decreaseReferenceCount methods
 		// and make the variable protected
 		int referenceCount;
 
 	private:
-        void init();
+				void init();
 
 	protected:
 		void setNameFromPath(std::string & fullPath);
@@ -41,8 +42,8 @@ class BaseSource {
 		bool loadable; // If the source can be loaded from disk like image and video
 		bool loaded; // Is the source loaded?
 		SourceType type;
-        bool displayed;
-        bool runInBackground;
+				bool displayed;
+				bool runInBackground;
 };
 
 } // namespace piMapper

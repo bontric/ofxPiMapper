@@ -34,7 +34,11 @@ void PresentationMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
 			}
 			break;
 	case OF_KEY_BACKSPACE:
-
+		for(auto const &ent: app->getMediaServer()->loadedSources)
+			if(ent.second->getType() == SourceType::SOURCE_TYPE_VIDEO){
+				ent.second->resetPlayback();
+			}
+			break;
 		break;
 	}
 }
