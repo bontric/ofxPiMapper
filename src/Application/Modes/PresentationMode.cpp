@@ -20,9 +20,23 @@ void PresentationMode::draw(Application * app){
 }
 
 void PresentationMode::onMousePressed(Application * app, ofMouseEventArgs & args){
-    app->getCmdManager()->exec(
-        new ofx::piMapper::SetApplicationModeCmd(
-            app, ProjectionMappingMode::instance()));
+		app->getCmdManager()->exec(
+				new ofx::piMapper::SetApplicationModeCmd(
+						app, ProjectionMappingMode::instance()));
+}
+
+void PresentationMode::onKeyPressed(Application * app, ofKeyEventArgs & args){
+	switch(args.key){
+	case ' ':
+		for(auto const &ent: app->getMediaServer()->loadedSources)
+			if(ent.second->getType() == SourceType::SOURCE_TYPE_VIDEO){
+				ent.second->togglePause();
+			}
+			break;
+	case OF_KEY_BACKSPACE:
+
+		break;
+	}
 }
 
 } // namespace piMapper

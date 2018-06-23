@@ -13,15 +13,15 @@ namespace piMapper {
 
 class PresentationMode : public ApplicationBaseMode {
 
-	public:
-		static PresentationMode * instance();
-		void draw(Application * app);
-        void onMousePressed(Application * app, ofMouseEventArgs & args);
-	
-		void onGuiEvent(Application * app, GuiEvent & e){}
+public:
+	static PresentationMode * instance();
+	void draw(Application * app);
+	void onMousePressed(Application * app, ofMouseEventArgs & args);
+	void onKeyPressed(Application * app, ofKeyEventArgs & args);
+	void onGuiEvent(Application * app, GuiEvent & e){}
 
-	private:
-		static PresentationMode * _instance;
+private:
+	static PresentationMode * _instance;
 
 };
 

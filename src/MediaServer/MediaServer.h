@@ -15,7 +15,7 @@
 #define PI_IMAGES_DIR "/boot/ofxpimapper/sources/images/"
 #define PI_VIDEOS_DIR "/boot/ofxpimapper/sources/videos/"
 
-/* 
+/*
  * These you can get when you apt-get install usbmount
  */
 #define USB0_IMAGES_DIR "/media/usb0/"
@@ -32,7 +32,7 @@
 
 /*
 
-Considering that the pi has 4 USB ports, there is a possibility to connect 4 USB flash drives. The paths to them would be 
+Considering that the pi has 4 USB ports, there is a possibility to connect 4 USB flash drives. The paths to them would be
 	/media/usb0
 	/media/usb1
 	/media/usb2
@@ -47,7 +47,7 @@ namespace piMapper {
 class MediaServer {
 	public:
 		MediaServer();
-	
+
 		void setup();
 		void update();
 		void draw();
@@ -76,7 +76,7 @@ class MediaServer {
 		// Do things with FBO sources
 		void addFboSource(FboSource & fboSource); // could be called also as register FBO source
 		void addFboSource(FboSource * fboSource);
-	
+
 		BaseSource * loadFboSource(std::string & fboSourceName);
 		void unloadFboSource(std::string & fboSourceName);
 
@@ -94,6 +94,7 @@ class MediaServer {
 		ofEvent <std::string> onVideoUnloaded;
 		ofEvent <std::string> onFboSourceLoaded;
 		ofEvent <std::string> onFboSourceUnloaded;
+		map <std::string, BaseSource *> loadedSources;
 
 	private:
 		// Directory Watchers
@@ -103,19 +104,18 @@ class MediaServer {
 		DirectoryWatcher usb1VideoWatcher;
 		DirectoryWatcher usb2VideoWatcher;
 		DirectoryWatcher usb3VideoWatcher;
-	
+
 		DirectoryWatcher imageWatcher;
-        DirectoryWatcher piImageWatcher;
+				DirectoryWatcher piImageWatcher;
 		DirectoryWatcher usb0ImageWatcher;
 		DirectoryWatcher usb1ImageWatcher;
 		DirectoryWatcher usb2ImageWatcher;
 		DirectoryWatcher usb3ImageWatcher;
-	
-        std::vector<std::string> _tempImagePaths;
-        std::vector<std::string> _tempVideoPaths;
-    
-		map <std::string, BaseSource *> loadedSources;
-	
+
+				std::vector<std::string> _tempImagePaths;
+				std::vector<std::string> _tempVideoPaths;
+
+
 		// FBO source storage before they go to loadedSources
 		std::vector<FboSource *> fboSources; // FBO source storage
 };
